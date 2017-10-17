@@ -1,6 +1,9 @@
 import os 
 import shutil 
 
+''' takes a source directory and a target directory and creates a directory
+structure from additional paramaters with videos and images from source
+directory '''
 def move_files(source, target, date, center, group, teacher):
     lessons = "LessonPlans" 
     videos = "Videos" 
@@ -41,7 +44,9 @@ def move_files(source, target, date, center, group, teacher):
 
         shutil.copy(source_path+f, final_path)
         shutil.move(final_path+f, final_path+new_f) 
-
+    
+    print("Lesson Plans placed in: " + lessons_path)
+    print("Videos placed in: " + videos_path) 
 def check_input(date, center, group, teacher):
     if '2017' not in date:
         raise ValueError("Make sure correct year is in date") 
@@ -56,7 +61,9 @@ def get_input():
     teacher = '_'.join(teacher.split(' '))  
     return (date, center, group, teacher) 
 
+# -- this assumes you are in the directory with the DCIM folder 
 source = "DCIM"
+# -- this should be the absolute path of the hard-drive 
 target = "Hard_Drive" 
 # date = "Oct2017" 
 # center = "MLK" 
